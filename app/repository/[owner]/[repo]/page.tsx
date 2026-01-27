@@ -144,7 +144,7 @@ export default function RepositoryPage() {
                     <div className="flex items-center gap-4">
                         <button
                             onClick={() => router.push('/dashboard')}
-                            className="flex items-center gap-2 px-4 py-2 bg-white/5 hover:bg-white/10 text-white rounded-lg transition-colors border border-white/10"
+                            className="flex items-center gap-2 px-4 py-2 bg-black hover:bg-black/80 text-white rounded-lg transition-colors border border-white/20 shadow-lg"
                         >
                             <FaArrowLeft />
                             <span className="hidden sm:inline">Back</span>
@@ -217,10 +217,10 @@ export default function RepositoryPage() {
                                 <select
                                     value={selectedBranch}
                                     onChange={(e) => setSelectedBranch(e.target.value)}
-                                    className="bg-black text-gray-400 text-base font-medium focus:outline-none cursor-pointer min-w-[140px] pr-2"
+                                    className="bg-black text-white text-base font-medium focus:outline-none cursor-pointer min-w-[140px] pr-2"
                                 >
                                     {branches.map((b) => (
-                                        <option key={b.name} value={b.name} className="bg-black text-gray-400">
+                                        <option key={b.name} value={b.name} className="bg-black text-white">
                                             {b.name}
                                         </option>
                                     ))}
@@ -233,7 +233,7 @@ export default function RepositoryPage() {
                 {/* Tab Content */}
                 <div className="transition-all duration-300">
                     {activeTab === 'graph' && (
-                        <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                        <div className="bg-black rounded-xl border border-white/10 p-6 shadow-xl">
                             {commits.length > 0 ? (
                                 <CommitGraph commits={commits} />
                             ) : (
@@ -243,7 +243,7 @@ export default function RepositoryPage() {
                     )}
 
                     {activeTab === 'commits' && (
-                        <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                        <div className="bg-black rounded-xl border border-white/10 p-6 shadow-xl">
                             {commits.length > 0 ? (
                                 <div className="space-y-3">
                                     {commits.map((commit) => (
@@ -257,7 +257,7 @@ export default function RepositoryPage() {
                     )}
 
                     {activeTab === 'branches' && (
-                        <div className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6">
+                        <div className="bg-black rounded-xl border border-white/10 p-6 shadow-xl">
                             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                                 {branches.map((branch) => (
                                     <button
@@ -268,11 +268,11 @@ export default function RepositoryPage() {
                                         }}
                                         className={`p-4 rounded-xl border transition-all text-left ${selectedBranch === branch.name
                                             ? 'bg-purple-600/20 border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.2)]'
-                                            : 'bg-white/5 border-white/10 hover:border-purple-500/50 hover:bg-white/10'
+                                            : 'bg-black border-white/10 hover:border-purple-500/50 hover:bg-white/5'
                                             }`}
                                     >
-                                        <div className="flex items-center justify-between mb-2">
-                                            <span className="text-white font-medium flex items-center gap-2">
+                                        <div className="flex items-center justify-between mb-2 text-white">
+                                            <span className="font-medium flex items-center gap-2">
                                                 <FaCodeBranch className="text-purple-400" />
                                                 {branch.name}
                                             </span>
@@ -282,7 +282,7 @@ export default function RepositoryPage() {
                                                 </span>
                                             )}
                                         </div>
-                                        <p className="text-xs text-gray-500 font-mono truncate">{branch.commit.sha}</p>
+                                        <p className="text-xs text-gray-400 font-mono truncate">{branch.commit.sha}</p>
                                     </button>
                                 ))}
                             </div>
@@ -298,12 +298,14 @@ function TabButton({ active, onClick, icon, label }: { active: boolean; onClick:
     return (
         <button
             onClick={onClick}
-            className={`flex items-center gap-2 px-6 py-3 border-b-2 transition-all ${active
-                ? 'border-purple-500 text-purple-400 bg-white/5 font-semibold'
-                : 'border-transparent text-gray-400 hover:text-white hover:bg-white/5'
+            className={`flex items-center gap-2 px-6 py-3 border-b-2 transition-all rounded-t-lg group bg-black ${active
+                ? 'border-purple-500 text-white font-semibold'
+                : 'border-transparent text-gray-400 hover:text-white hover:bg-zinc-900'
                 }`}
         >
-            <span className="text-lg">{icon}</span>
+            <span className={`text-lg transition-transform group-hover:scale-110 ${active ? 'text-purple-400' : 'text-gray-500 group-hover:text-purple-400'}`}>
+                {icon}
+            </span>
             <span className="text-sm">{label}</span>
         </button>
     );
@@ -331,29 +333,29 @@ function CommitCard({ commit }: { commit: Commit }) {
     };
 
     return (
-        <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-4 hover:border-purple-500/50 transition-all">
+        <div className="bg-black rounded-lg border border-white/10 p-4 hover:border-purple-500/50 transition-all shadow-md group">
             <div className="flex items-start gap-4">
                 {commit.author?.avatar_url && (
                     <img
                         src={commit.author.avatar_url}
                         alt={commit.commit.author.name}
-                        className="w-10 h-10 rounded-full border-2 border-purple-500"
+                        className="w-10 h-10 rounded-full border-2 border-purple-500 group-hover:scale-110 transition-transform"
                     />
                 )}
                 <div className="flex-1 min-w-0">
-                    <p className="text-white font-medium mb-1 break-words">
+                    <p className="text-white font-semibold mb-1 break-words group-hover:text-purple-300 transition-colors">
                         {commit.commit.message.split('\n')[0]}
                     </p>
-                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-400">
+                    <div className="flex flex-wrap items-center gap-4 text-sm text-gray-300">
                         <span className="flex items-center gap-1">
-                            <FaUser className="text-xs" />
+                            <FaUser className="text-xs text-gray-500" />
                             {commit.commit.author.name}
                         </span>
                         <span className="flex items-center gap-1">
-                            <FaClock className="text-xs" />
+                            <FaClock className="text-xs text-gray-500" />
                             {formatDate(commit.commit.author.date)}
                         </span>
-                        <span className="font-mono text-xs bg-white/10 px-2 py-1 rounded">
+                        <span className="font-mono text-xs bg-white/10 px-2 py-1 rounded text-white border border-white/5">
                             {commit.sha.substring(0, 7)}
                         </span>
                     </div>
