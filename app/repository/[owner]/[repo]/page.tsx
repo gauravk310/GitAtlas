@@ -210,19 +210,22 @@ export default function RepositoryPage() {
                         </p>
                     </div>
                     {activeTab !== 'branches' && (
-                        <div className="flex items-center gap-2 bg-white/5 rounded-lg border border-white/10 px-3 py-1.5">
-                            <FaCodeBranch className="text-gray-400 text-sm" />
-                            <select
-                                value={selectedBranch}
-                                onChange={(e) => setSelectedBranch(e.target.value)}
-                                className="bg-transparent text-white text-sm focus:outline-none cursor-pointer"
-                            >
-                                {branches.map((b) => (
-                                    <option key={b.name} value={b.name} className="bg-slate-900">
-                                        {b.name}
-                                    </option>
-                                ))}
-                            </select>
+                        <div className="flex flex-col gap-1.5">
+                            <label className="text-[10px] font-bold uppercase text-gray-500 tracking-wider ml-1">Select Branch</label>
+                            <div className="flex items-center gap-3 bg-white/5 hover:bg-white/10 rounded-xl border border-white/10 px-4 py-2.5 transition-all group focus-within:ring-2 focus-within:ring-purple-500/40">
+                                <FaCodeBranch className="text-purple-400 text-sm group-hover:scale-110 transition-transform" />
+                                <select
+                                    value={selectedBranch}
+                                    onChange={(e) => setSelectedBranch(e.target.value)}
+                                    className="bg-black text-gray-400 text-base font-medium focus:outline-none cursor-pointer min-w-[140px] pr-2"
+                                >
+                                    {branches.map((b) => (
+                                        <option key={b.name} value={b.name} className="bg-black text-gray-400">
+                                            {b.name}
+                                        </option>
+                                    ))}
+                                </select>
+                            </div>
                         </div>
                     )}
                 </div>
