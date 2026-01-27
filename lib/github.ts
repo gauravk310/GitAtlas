@@ -48,7 +48,7 @@ export class GitHubService {
     /**
      * Get commit history for a repository
      */
-    async getCommits(owner: string, repo: string, page = 1, perPage = 100, since?: string) {
+    async getCommits(owner: string, repo: string, sha?: string, page = 1, perPage = 100, since?: string) {
         try {
             const params: any = {
                 owner,
@@ -56,6 +56,10 @@ export class GitHubService {
                 page,
                 per_page: perPage,
             };
+
+            if (sha) {
+                params.sha = sha;
+            }
 
             if (since) {
                 params.since = since;
