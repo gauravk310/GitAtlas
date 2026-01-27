@@ -180,8 +180,17 @@ function StatCard({ icon, title, value, color }: any) {
 }
 
 function RepositoryCard({ repository }: any) {
+    const router = useRouter();
+
+    const handleClick = () => {
+        router.push(`/repository/${repository.owner}/${repository.name}`);
+    };
+
     return (
-        <div className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-4 hover:border-purple-500/50 transition-all hover:transform hover:scale-105">
+        <div
+            onClick={handleClick}
+            className="bg-white/5 backdrop-blur-sm rounded-lg border border-white/10 p-4 hover:border-purple-500/50 transition-all hover:transform hover:scale-105 cursor-pointer"
+        >
             <h3 className="text-lg font-semibold text-white mb-2 truncate">
                 {repository.name}
             </h3>
