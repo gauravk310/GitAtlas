@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --foreground-rgb: 230, 237, 243;
+  --background-start-rgb: 13, 17, 23;
+  --background-end-rgb: 1, 4, 9;
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Noto Sans', Helvetica, Arial, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* GitHub-style scrollbar */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}
+
+::-webkit-scrollbar-track {
+  background: #161b22;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #30363d;
+  border-radius: 6px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #484f58;
+}
+
+/* Custom GitHub-style components */
+.github-card {
+  @apply bg-github-canvas-subtle border border-github-border-default rounded-github p-4 hover:border-github-border-muted transition-colors;
+}
+
+.github-button {
+  @apply px-4 py-2 bg-github-accent-emphasis text-white rounded-github font-medium hover:bg-github-accent-fg transition-colors;
+}
+
+.github-button-secondary {
+  @apply px-4 py-2 bg-github-canvas-subtle border border-github-border-default text-github-fg-default rounded-github font-medium hover:bg-github-canvas-inset transition-colors;
+}
+
+.github-input {
+  @apply w-full px-3 py-2 bg-github-canvas-inset border border-github-border-default rounded-github text-github-fg-default placeholder-github-fg-subtle focus:border-github-accent-emphasis focus:outline-none transition-colors;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.3s ease-out;
+}
+
+@keyframes blob {
+  0%, 100% {
+    transform: translate(0, 0) scale(1);
+  }
+  25% {
+    transform: translate(20px, -50px) scale(1.1);
+  }
+  50% {
+    transform: translate(-20px, 20px) scale(0.9);
+  }
+  75% {
+    transform: translate(50px, 50px) scale(1.05);
+  }
+}
+
+.animate-blob {
+  animation: blob 7s infinite;
+}
+
+.animation-delay-2000 {
+  animation-delay: 2s;
+}
+
+.animation-delay-4000 {
+  animation-delay: 4s;
+}
+
+/* Chart styles */
+.recharts-tooltip-wrapper {
+  @apply bg-github-canvas-subtle border border-github-border-default rounded-github shadow-github-lg;
+}
