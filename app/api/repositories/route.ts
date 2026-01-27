@@ -30,7 +30,11 @@ export async function GET(request: NextRequest) {
         const searchParams = request.nextUrl.searchParams;
         const forceRefresh = searchParams.get('refresh') === 'true';
 
-        if (forceRefresh) {
+        // Check if repositories exist in database
+        const existingReposCount = await Repository.countDocuments({ userId: user._id });
+        const shouldFetchFromGitHub = forceRefresh || existingReposCount === 0;
+
+        if (shouldFetchFromGitHub) {
             // Fetch fresh data from GitHub
             const githubRepos = await githubService.getUserRepositories(1, 100);
 
@@ -71,8 +75,18 @@ export async function GET(request: NextRequest) {
         return NextResponse.json(repositories);
     } catch (error) {
         console.error('Error fetching repositories:', error);
+
+        // Log more details about the error
+        if (error instanceof Error) {
+            console.error('Error message:', error.message);
+            console.error('Error stack:', error.stack);
+        }
+
         return NextResponse.json(
-            { error: 'Failed to fetch repositories' },
+            {
+                error: 'Failed to fetch repositories',
+                details: error instanceof Error ? error.message : 'Unknown error'
+            },
             { status: 500 }
         );
     }
