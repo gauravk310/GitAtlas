@@ -3,8 +3,8 @@
 import { useSession } from 'next-auth/react';
 import { useRouter, useParams } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { FaArrowLeft, FaCodeBranch, FaGitAlt, FaUser, FaClock } from 'react-icons/fa';
-import CommitGraph from '@/components/CommitGraph';
+import { FaArrowLeft, FaCodeBranch, FaUser, FaClock } from 'react-icons/fa';
+import { FaGitAlt } from 'react-icons/fa';
 
 interface Branch {
     name: string;
@@ -45,7 +45,7 @@ export default function RepositoryPage() {
     const [selectedBranch, setSelectedBranch] = useState<string>('');
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [activeTab, setActiveTab] = useState<'graph' | 'commits' | 'branches'>('graph');
+    const [activeTab, setActiveTab] = useState<'commits' | 'branches'>('branches');
 
     useEffect(() => {
         if (status === 'unauthenticated') {
@@ -168,22 +168,16 @@ export default function RepositoryPage() {
                     {/* Navigation Tabs */}
                     <nav className="flex gap-1 mt-6">
                         <TabButton
-                            active={activeTab === 'graph'}
-                            onClick={() => setActiveTab('graph')}
-                            icon={<FaGitAlt />}
-                            label="Commit Graph"
+                            active={activeTab === 'branches'}
+                            onClick={() => setActiveTab('branches')}
+                            icon={<FaCodeBranch />}
+                            label="Branches"
                         />
                         <TabButton
                             active={activeTab === 'commits'}
                             onClick={() => setActiveTab('commits')}
                             icon={<FaClock />}
                             label="Recent Commits"
-                        />
-                        <TabButton
-                            active={activeTab === 'branches'}
-                            onClick={() => setActiveTab('branches')}
-                            icon={<FaCodeBranch />}
-                            label="Branches"
                         />
                     </nav>
                 </div>
@@ -200,10 +194,9 @@ export default function RepositoryPage() {
                 <div className="mb-6 flex items-center justify-between">
                     <div>
                         <h2 className="text-xl font-bold text-white flex items-center gap-2 capitalize">
-                            {activeTab === 'graph' && <FaGitAlt className="text-purple-400" />}
                             {activeTab === 'commits' && <FaClock className="text-purple-400" />}
                             {activeTab === 'branches' && <FaCodeBranch className="text-purple-400" />}
-                            {activeTab === 'graph' ? 'History Graph' : activeTab === 'commits' ? 'Commit List' : 'Repository Branches'}
+                            {activeTab === 'commits' ? 'Commit List' : 'Repository Branches'}
                         </h2>
                         <p className="text-sm text-gray-400 mt-1">
                             Viewing {activeTab} for <span className="text-purple-400">{selectedBranch}</span> branch
@@ -232,15 +225,7 @@ export default function RepositoryPage() {
 
                 {/* Tab Content */}
                 <div className="transition-all duration-300">
-                    {activeTab === 'graph' && (
-                        <div className="bg-black rounded-xl border border-white/10 p-6 shadow-xl">
-                            {commits.length > 0 ? (
-                                <CommitGraph commits={commits} />
-                            ) : (
-                                <EmptyState message="No commits found for this branch" />
-                            )}
-                        </div>
-                    )}
+
 
                     {activeTab === 'commits' && (
                         <div className="bg-black rounded-xl border border-white/10 p-6 shadow-xl">
@@ -264,11 +249,11 @@ export default function RepositoryPage() {
                                         key={branch.name}
                                         onClick={() => {
                                             setSelectedBranch(branch.name);
-                                            setActiveTab('graph');
+                                            setActiveTab('commits');
                                         }}
-                                        className={`p-4 rounded-xl border transition-all text-left ${selectedBranch === branch.name
-                                            ? 'bg-purple-600/20 border-purple-500 shadow-[0_0_15px_rgba(168,85,247,0.2)]'
-                                            : 'bg-black border-white/10 hover:border-purple-500/50 hover:bg-white/5'
+                                        className={`p-4 rounded-xl border transition-all text-left cursor-pointer ${selectedBranch === branch.name
+                                            ? 'bg-black border-purple-500 shadow-[0_0_20px_rgba(168,85,247,0.15)] text-white'
+                                            : 'bg-black border-white/10 text-gray-400 hover:border-purple-500/50 hover:bg-white/5'
                                             }`}
                                     >
                                         <div className="flex items-center justify-between mb-2 text-white">
