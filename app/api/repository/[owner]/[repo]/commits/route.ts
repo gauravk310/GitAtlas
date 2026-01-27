@@ -7,9 +7,10 @@ import User from '@/models/User';
 
 export async function GET(
     request: NextRequest,
-    { params }: { params: { owner: string; repo: string } }
+    { params }: { params: Promise<{ owner: string; repo: string }> }
 ) {
     try {
+        const { owner, repo } = await params;
         const session = await getServerSession(authOptions);
 
         if (!session || !session.user) {
@@ -26,16 +27,15 @@ export async function GET(
         }
 
         // Get branch from query params (optional)
-        const searchParams = request.nextUrl.searchParams;
-        const branch = searchParams.get('branch');
+        const branch = request.nextUrl.searchParams.get('branch');
 
         // Initialize GitHub service
         const githubService = new GitHubService(user.accessToken);
 
         // Fetch commits from GitHub
         const commits = await githubService.getCommits(
-            params.owner,
-            params.repo,
+            owner,
+            repo,
             branch || undefined,
             1,
             100
