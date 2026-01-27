@@ -26,10 +26,17 @@ export default function Dashboard() {
     const fetchRepositories = async () => {
         try {
             setLoading(true);
+            console.log('Fetching repositories...');
             const response = await fetch('/api/repositories');
+            console.log('Response status:', response.status);
+
             if (response.ok) {
                 const data = await response.json();
+                console.log('Repositories fetched:', data.length, 'repos');
                 setRepositories(data);
+            } else {
+                const errorData = await response.json();
+                console.error('Failed to fetch repositories:', errorData);
             }
         } catch (error) {
             console.error('Error fetching repositories:', error);
