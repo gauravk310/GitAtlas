@@ -14,7 +14,7 @@
     "d3": "^7.9.0",
     "mongodb": "^7.0.0",
     "mongoose": "^9.1.5",
-    "next": "15.1.4",
+    "next": "^16.1.6",
     "next-auth": "^4.24.13",
     "react": "^18",
     "react-dom": "^18",
@@ -27,7 +27,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "eslint": "^8",
-    "eslint-config-next": "15.1.4",
+    "eslint-config-next": "^16.1.6",
     "typescript": "^5"
   }
 }
