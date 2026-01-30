@@ -79,7 +79,7 @@ export default function Home() {
                                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={3} d="M13 7l5 5m0 0l-5 5m5-5H6" />
                                 </svg>
                             </button>
-                            <button className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold text-zinc-100 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-900 hover:border-zinc-700 transition-all">
+                            {/* <button className="inline-flex items-center gap-2 px-8 py-4 text-lg font-bold text-zinc-100 bg-zinc-900/50 border border-zinc-800 rounded-xl hover:bg-zinc-900 hover:border-zinc-700 transition-all">
                                 <span>View Demo</span>
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z" />
