@@ -30,9 +30,6 @@ export default function Home() {
                             <a href="#features" className="text-zinc-400 hover:text-zinc-100 transition-colors text-sm font-medium">
                                 Features
                             </a>
-                            <a href="#" className="text-zinc-400 hover:text-zinc-100 transition-colors text-sm font-medium">
-                                Documentation
-                            </a>
                         </div>
                     </div>
                 </nav>
