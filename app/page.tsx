@@ -50,7 +50,6 @@ export default function Home() {
                             and understand your development workflow like never before.
                         </p>
 
-                        {/* CTA Buttons */}
                         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-[fadeInUp_0.6s_ease-out_0.3s_both]">
                             <button
                                 onClick={() => signIn('github', { callbackUrl: '/dashboard' })}
