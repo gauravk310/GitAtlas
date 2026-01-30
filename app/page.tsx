@@ -37,7 +37,6 @@ export default function Home() {
                             <span className="text-sm text-zinc-400 font-medium">Powered by GitHub API</span>
                         </div>
 
-                        {/* Main Headline */}
                         <h1 className="text-7xl md:text-8xl font-black tracking-tighter mb-8 animate-[fadeInUp_0.6s_ease-out_0.1s_both]">
                             Visualize Your
                             <br />
