@@ -93,7 +93,6 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* Features Section */}
                 <section id="features" className="max-w-7xl mx-auto px-6 py-24">
                     <div className="text-center mb-16">
                         <h2 className="text-5xl md:text-6xl font-black tracking-tight mb-6">
