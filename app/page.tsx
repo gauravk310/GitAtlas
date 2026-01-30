@@ -26,11 +26,7 @@ export default function Home() {
                                 Git<span className="text-emerald-400">Atlas</span>
                             </span>
                         </div>
-                        <div className="flex items-center gap-6">
-                            <a href="#features" className="text-zinc-400 hover:text-zinc-100 transition-colors text-sm font-medium">
-                                Features
-                            </a>
-                        </div>
+                    
                     </div>
                 </nav>
 
