@@ -26,7 +26,7 @@ export default function Home() {
                                 Git<span className="text-emerald-400">Atlas</span>
                             </span>
                         </div>
-                    
+
                     </div>
                 </nav>
 
@@ -312,7 +312,7 @@ function FeatureCard({
             <div className={`absolute inset-0 bg-gradient-to-br ${gradient} rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500`}></div>
 
             {/* Content */}
-            <div className="relative z-10">
+            <div className="relative z-10 flex flex-col items-center text-center">
                 <div className="text-5xl mb-6 transform group-hover:scale-110 transition-transform duration-500">
                     {icon}
                 </div>
