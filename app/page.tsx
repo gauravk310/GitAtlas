@@ -45,7 +45,6 @@ export default function Home() {
                             </span>
                         </h1>
 
-                        {/* Subheadline */}
                         <p className="text-xl md:text-2xl text-zinc-400 leading-relaxed mb-12 max-w-2xl mx-auto animate-[fadeInUp_0.6s_ease-out_0.2s_both]">
                             Transform raw GitHub data into actionable insights. Track commits, analyze patterns,
                             and understand your development workflow like never before.
