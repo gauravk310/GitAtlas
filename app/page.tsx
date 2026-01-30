@@ -84,11 +84,11 @@ export default function Home() {
                                 <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
                                     <path d="M8 5v14l11-7z" />
                                 </svg>
-                            </button>
+                            </button> */}
                         </div>
 
                         {/* Stats Bar */}
-                        <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto animate-[fadeInUp_0.6s_ease-out_0.4s_both]">
+                        {/* <div className="mt-20 grid grid-cols-3 gap-8 max-w-3xl mx-auto animate-[fadeInUp_0.6s_ease-out_0.4s_both]">
                             <div className="text-center">
                                 <div className="text-4xl font-black text-emerald-400 mb-2">10K+</div>
                                 <div className="text-sm text-zinc-500 font-medium">Repositories Analyzed</div>
@@ -101,7 +101,7 @@ export default function Home() {
                                 <div className="text-4xl font-black text-emerald-400 mb-2">2K+</div>
                                 <div className="text-sm text-zinc-500 font-medium">Active Users</div>
                             </div>
-                        </div>
+                        </div> */}
                     </div>
                 </section>
 
