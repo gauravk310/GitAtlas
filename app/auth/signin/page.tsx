@@ -31,9 +31,9 @@ function SignInContent() {
                     {/* Sign In Button */}
                     <button
                         onClick={() => signIn('github', { callbackUrl })}
-                        className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg"
+                        className="w-full flex items-center justify-center gap-3 px-6 py-4 bg-black hover:bg-zinc-800 text-white font-semibold rounded-lg transition-all transform hover:scale-105 shadow-lg border border-zinc-800"
                     >
-                        <FaGithub className="w-6 h-6" />
+                        <FaGithub className="w-6 h-6 text-white" />
                         Sign in with GitHub
                     </button>
 
