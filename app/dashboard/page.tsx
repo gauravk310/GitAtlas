@@ -10,11 +10,6 @@ export default function Dashboard() {
     const router = useRouter();
     const [repositories, setRepositories] = useState([]);
     const [loading, setLoading] = useState(true);
-    const [showLogoutModal, setShowLogoutModal] = useState(false);
-
-    const handleLogout = () => {
-        signOut({ callbackUrl: '/' });
-    };
 
     useEffect(() => {
         if (status === 'unauthenticated') {
@@ -92,7 +87,7 @@ export default function Dashboard() {
                                 </div>
                             </div>
                             <button
-                                onClick={() => setShowLogoutModal(true)}
+                                onClick={() => signOut({ callbackUrl: '/' })}
                                 className="flex items-center gap-2 px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
                             >
                                 <FaSignOutAlt />
@@ -103,53 +98,6 @@ export default function Dashboard() {
                 </div>
             </header>
 
-            {/* Logout Confirmation Modal */}
-            {showLogoutModal && (
-                <div className="fixed inset-0 z-50 flex items-center justify-center">
-                    {/* Backdrop */}
-                    <div
-                        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
-                        onClick={() => setShowLogoutModal(false)}
-                    ></div>
-
-                    {/* Modal */}
-                    <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 border border-white/10 rounded-2xl p-6 w-full max-w-md mx-4 shadow-2xl transform animate-pulse-once">
-                        <div className="text-center">
-                            {/* Icon */}
-                            <div className="w-16 h-16 mx-auto mb-4 bg-red-500/20 rounded-full flex items-center justify-center">
-                                <FaSignOutAlt className="w-8 h-8 text-red-400" />
-                            </div>
-
-                            {/* Title */}
-                            <h3 className="text-xl font-bold text-white mb-2">
-                                Confirm Logout
-                            </h3>
-
-                            {/* Message */}
-                            <p className="text-gray-400 mb-6">
-                                Are you sure you want to sign out of your account?
-                            </p>
-
-                            {/* Buttons */}
-                            <div className="flex gap-3 justify-center">
-                                <button
-                                    onClick={() => setShowLogoutModal(false)}
-                                    className="px-6 py-2.5 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors font-medium"
-                                >
-                                    Cancel
-                                </button>
-                                <button
-                                    onClick={handleLogout}
-                                    className="px-6 py-2.5 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors font-medium flex items-center gap-2"
-                                >
-                                    <FaSignOutAlt className="w-4 h-4" />
-                                    Sign Out
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            )}
 
             {/* Main Content */}
             <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
