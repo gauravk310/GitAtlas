@@ -8,6 +8,9 @@ const inter = Inter({ subsets: ['latin'] });
 export const metadata: Metadata = {
     title: 'GitAtlas - GitHub Analytics Platform',
     description: 'Comprehensive GitHub repository analytics and insights',
+    icons: {
+        icon: '/favicon.svg',
+    },
 };
 
 export default function RootLayout({
